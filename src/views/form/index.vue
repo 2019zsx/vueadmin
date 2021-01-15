@@ -1,5 +1,6 @@
 <template>
   <div class="app-container">
+    <el-scrollbar class="i-el-scrollbar">
     <el-form ref="form" :model="form" label-width="120px">
       <el-form-item label="Activity name">
         <el-input v-model="form.name" />
@@ -44,6 +45,7 @@
         <el-button @click="onCancel">Cancel</el-button>
       </el-form-item>
     </el-form>
+      </el-scrollbar>
   </div>
 </template>
 

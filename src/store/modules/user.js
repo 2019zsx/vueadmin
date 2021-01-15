@@ -145,15 +145,12 @@ const actions = {
         GetMenuTree().then((res) => {
           commit('SET_ROUTES', res.data)
           setroutes(JSON.stringify(res.data))
-          // 循环路由（填充模板）
-          accessedRoutes = filterAsyncRouter(res.data)
-          resolve(accessedRoutes)
+          resolve(res.data)
         }).catch((error) => {
           resolve(error)
         });
       } else {
-        accessedRoutes = filterAsyncRouter(JSON.parse(getroutes()))
-        resolve(accessedRoutes)
+        resolve(JSON.parse(getroutes()))
       }
 
 

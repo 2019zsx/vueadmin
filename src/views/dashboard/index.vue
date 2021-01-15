@@ -1,5 +1,5 @@
 <template>
-  <div class="dashboard-container">
+   <div class="app-container">
   1111
   </div>
 </template>

@@ -56,13 +56,34 @@ export const constantRoutes = [{
       }
     }]
   },
+  // {
+  //   path: '/user',
+  //   component: Layout,
+  //   alwaysShow: true, // will always show the root menu
+  //   name: 'mission',
+  //   meta: {
+  //     title: '宣教中心',
+  //     icon: 'lock',
+  //     //  roles: ['admin', 'editor'] // you can set roles in root nav
+  //   },
+  //   children: [{
+  //       path: 'index',
+  //       component: () => import('@/views/user/index'),
+  //       name: 'index',
+  //       meta: {
+  //         title: '宣教内容',
+  //         // roles: ['admin'] // or you can only set roles in sub nav
+  //       }
+  //     }
+  //   ]
+  // }
 
   // 404 page must be placed at the end !!!
   //{ path: '*', redirect: '/404', hidden: true }
 ]
 
 const createRouter = () => new Router({
-  // mode: 'history', // require service support
+  mode: 'history', // require service support
   scrollBehavior: () => ({
     y: 0
   }),
@@ -75,37 +96,5 @@ const router = createRouter()
 export function resetRouter() {
   const newRouter = createRouter()
   router.matcher = newRouter.matcher // reset router
-}
-var i = 1;
- // 遍历后台传来的路由字符串，转换为组件对象
- export function filterAsyncRouter(asyncRouterMap) {
-  const accessedRouters = asyncRouterMap.filter(route => {try {
-   console.log(route.name)
-  
-        if (route.component === '/'||route.component==='-') {
-          route.component = Layout
-        } else {
-         // route.component = _import(route.component) // 导入组件
-         route.component =  Layout;
-        }
-      
-      if (route.children && route.children.length) {
-        route.children = filterAsyncRouter(route.children)
-      }else{
-        route.children=[]
-      }
-     // alert(JSON.stringify(route.component))
-     return true
-  
-   } catch (error) {
-     console.log('tagerror', error)
-   }  
-  })
-  return accessedRouters
-}
-
-
-export const loadView = (view) => { // 路由懒加载
-  return () => _import(`@/views/${view}`)
 }
 export default router
